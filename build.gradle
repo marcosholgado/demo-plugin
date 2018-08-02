@@ -42,7 +42,7 @@ intellij {
     version '2018.1.2'
     type 'IC'
     pluginName 'droidcon18'
-    plugins = ['android', 'Kotlin', 'Gradle']
+    plugins = ['android', 'Kotlin', 'Gradle', 'git4idea']
     updateSinceUntilBuild false
     alternativeIdePath = '/Applications/Android Studio.app'
 }
