@@ -19,8 +19,21 @@
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>Git4Idea</depends>
 
+    <project-components>
+        <!-- Add your project components here -->
+        <component>
+            <implementation-class>
+                com.marcosholgado.droidcon18.plugin.components.JiraComponent
+            </implementation-class>
+            <loadForDefaultProject/>
+        </component>
+    </project-components>
+
     <extensions defaultExtensionNs="com.intellij">
         <defaultProjectTypeProvider type="Android"/>
+        <projectConfigurable
+                instance="com.marcosholgado.droidcon18.plugin.configuration.JiraSettings">
+        </projectConfigurable>
     </extensions>
 
     <actions>
@@ -29,6 +42,7 @@
                 text="Test Action"
                 description="Test Action">
             <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
+            <keyboard-shortcut first-keystroke="control j" second-keystroke="o" keymap="$default"/>
         </action>
     </actions>
 </idea-plugin>
