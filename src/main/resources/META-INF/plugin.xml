@@ -37,8 +37,15 @@
     </extensions>
 
     <actions>
+        <action id="JiraMoveTicket"
+                class="com.marcosholgado.droidcon18.plugin.actions.jira.JiraMoveAction"
+                text="Move Ticket"
+                description="Move Ticket in Jira">
+            <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
+            <keyboard-shortcut first-keystroke="control j" second-keystroke="p" keymap="$default"/>
+        </action>
         <action id="TestAction"
-                class="com.marcosholgado.droidcon18.plugin.actions.TestAction"
+                class="com.marcosholgado.droidcon18.plugin.actions.test.TestAction"
                 text="Test Action"
                 description="Test Action">
             <add-to-group group-id="RunContextPopupGroup" anchor="last"/>

@@ -28,7 +28,7 @@ class JiraSettings(private val project: Project): Configurable, DocumentListener
         val config = JiraComponent.getInstance(project)
         config.jiraUrl = jiraURLField!!.text
         config.username = userField!!.text
-        config.password = passwordField!!.password.toString()
+        config.password = String(passwordField!!.password)
 
         modified = false
     }

@@ -1,4 +1,4 @@
-package com.marcosholgado.droidcon18.plugin.actions
+package com.marcosholgado.droidcon18.plugin.actions.test
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
