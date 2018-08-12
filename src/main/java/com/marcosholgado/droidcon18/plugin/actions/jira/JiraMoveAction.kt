@@ -1,77 +1,42 @@
 package com.marcosholgado.droidcon18.plugin.actions.jira
 
-import android.util.Log
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
-import com.intellij.util.Base64
-import com.marcosholgado.droidcon18.plugin.actions.jira.network.JiraService
-import com.marcosholgado.droidcon18.plugin.components.JiraComponent
-import git4idea.repo.GitRepositoryManager
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import com.marcosholgado.droidcon18.plugin.actions.jira.di.DaggerJiraComponent
+import com.marcosholgado.droidcon18.plugin.actions.jira.di.JiraModule
+import com.marcosholgado.droidcon18.plugin.actions.jira.network.Transition
+import javax.inject.Inject
 import javax.swing.JFrame
 
-class JiraMoveAction: AnAction() {
-    var disposable: Disposable? = null
+class JiraMoveAction : AnAction() {
     private val panel = JiraMovePanel()
     private var project: Project? = null
+    @Inject
+    lateinit var presenter: JiraMoveActionPresenter
+
 
     override fun actionPerformed(event: AnActionEvent) {
 
         project = event.project
+
+        DaggerJiraComponent.builder()
+                .jiraModule(JiraModule(this, project!!))
+                .build().inject(this)
 
         val frame = JFrame()
         frame.contentPane = panel.mainPanel
         frame.pack()
         frame.isVisible = true
 
-        getTransitions()
+        presenter.getBranch()
     }
 
-    fun getTransitions() {
-
-        val component = JiraComponent.getInstance(project!!)
-        val username = component.username
-        val password = component.password
-        val jiraURL = component.jiraUrl
-
-        val data: ByteArray = "$username:$password".toByteArray(Charsets.UTF_8)
-        val auth = "Basic " + Base64.encode(data)
-
-        val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(jiraURL)
-                .build()
-
-        val service = retrofit.create(JiraService::class.java)
-
-        val repositoryManager = GitRepositoryManager.getInstance(project!!)
-        var branch = ""
-
-        for (repository in repositoryManager.repositories) {
-            branch = repository.currentBranch!!.name
-            break
-        }
-
+    fun setBranch(branch: String) {
         panel.branchField?.text = branch
+    }
 
-        disposable = service.getTransitions(auth,branch)
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.newThread())
-                .subscribe(
-                        { response ->
-                            for(transition in response.transitions) {
-                                panel.transitionCombo?.addItem(transition)
-                            }
-                        },
-                        { error ->
-                            Log.d("ERROR", error.message)
-                        }
-                )
+    fun addTransition(transition: Transition) {
+        panel.transitionCombo?.addItem(transition)
     }
 }
