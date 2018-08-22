@@ -3,7 +3,7 @@ package com.marcosholgado.droidcon18.plugin.actions.jira
 import android.util.Log
 import com.intellij.openapi.project.Project
 import com.intellij.util.Base64
-import com.marcosholgado.droidcon18.plugin.actions.jira.network.JiraService
+import com.marcosholgado.droidcon18.plugin.actions.jira.network.*
 import com.marcosholgado.droidcon18.plugin.components.JiraComponent
 import git4idea.repo.GitRepositoryManager
 import io.reactivex.disposables.Disposable
@@ -11,13 +11,22 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class JiraMoveActionPresenter @Inject constructor(val view: JiraMoveAction, val project: Project, val jiraService: JiraService) {
+class JiraMoveDialogPresenter @Inject constructor(
+        private val view: JiraMoveDialog,
+        val project: Project,
+        private val jiraService: JiraService
+) {
 
     var disposable: Disposable? = null
+    var branch: String = ""
 
-    fun getBranch() {
-        val repositoryManager = GitRepositoryManager.getInstance(project!!)
-        var branch = ""
+    fun load() {
+        getBranch()
+        getTransitions()
+    }
+
+    private fun getBranch() {
+        val repositoryManager = GitRepositoryManager.getInstance(project)
 
         for (repository in repositoryManager.repositories) {
             branch = repository.currentBranch!!.name
@@ -25,20 +34,16 @@ class JiraMoveActionPresenter @Inject constructor(val view: JiraMoveAction, val 
         }
 
         view.setBranch(branch)
-        getTransitions(branch)
     }
 
-    private fun getTransitions(branch: String) {
-
+    private fun getTransitions() {
         val auth = getAuthCode()
         disposable = jiraService.getTransitions(auth,branch)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())
                 .subscribe(
                         { response ->
-                            for(transition in response.transitions) {
-                                view.addTransition(transition)
-                            }
+                            view.loadTransitions(response.transitions)
                         },
                         { error ->
                             Log.d("ERROR", error.message)
@@ -53,5 +58,23 @@ class JiraMoveActionPresenter @Inject constructor(val view: JiraMoveAction, val 
 
         val data: ByteArray = "$username:$password".toByteArray(Charsets.UTF_8)
         return "Basic " + Base64.encode(data)
+    }
+
+    fun doTransition(selectedItem: Transition, text: String) {
+        val auth = getAuthCode()
+        val transitionData = TransitionData(selectedItem)
+
+        disposable = jiraService.doTransition(auth, branch, transitionData)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.newThread())
+                .subscribe(
+                        {
+                            view.close()
+                            Log.d("YAY", it.toString())
+                        },
+                        { error ->
+                            Log.d("ERROR", error.message)
+                        }
+                )
     }
 }
