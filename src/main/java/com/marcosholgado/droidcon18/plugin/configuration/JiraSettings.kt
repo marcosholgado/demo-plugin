@@ -13,9 +13,11 @@ class JiraSettings(private val project: Project): Configurable, DocumentListener
     private var userField: JTextField? = null
     private var passwordField: JPasswordField? = null
     private var jiraURLField: JTextField? = null
+    private var regExField: JTextField? = null
     private var userLabel: JLabel? = null
     private var passwordLabel: JLabel? = null
     private var jiraURLLabel: JLabel? = null
+    private var regExLabel: JTextField? = null
     private var mainPanel: JPanel? = null
 
     private var modified = false
@@ -29,6 +31,7 @@ class JiraSettings(private val project: Project): Configurable, DocumentListener
         config.jiraUrl = jiraURLField!!.text
         config.username = userField!!.text
         config.password = String(passwordField!!.password)
+        config.regex = regExField!!.text
 
         modified = false
     }
@@ -37,12 +40,14 @@ class JiraSettings(private val project: Project): Configurable, DocumentListener
         jiraURLField?.document?.addDocumentListener(this)
         userField?.document?.addDocumentListener(this)
         passwordField?.document?.addDocumentListener(this)
+        regExField?.document?.addDocumentListener(this)
 
 
         val config = JiraComponent.getInstance(project)
         userField?.text = config.username
         passwordField?.text = config.password
         jiraURLField?.text = config.jiraUrl
+        regExField?.text = config.regex
 
         return mainPanel
     }

@@ -14,6 +14,7 @@ class JiraComponent constructor(project: Project? = null): AbstractProjectCompon
     var jiraUrl: String = ""
     var username: String = ""
     var password: String = ""
+    var regex: String = ""
 
     override fun getState(): JiraComponent? = this
 

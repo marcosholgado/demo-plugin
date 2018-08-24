@@ -46,8 +46,8 @@ class JiraMovePanel : JPanel() {
 
     fun addTransition(transition: Transition) = comboTransitions.addItem(transition)
 
-    fun setBranch(branch: String) {
-        txtJiraTicket.text = branch
+    fun setTicket(ticket: String) {
+        txtJiraTicket.text = ticket
     }
 
     fun getTransition() : Transition = comboTransitions.selectedItem as Transition

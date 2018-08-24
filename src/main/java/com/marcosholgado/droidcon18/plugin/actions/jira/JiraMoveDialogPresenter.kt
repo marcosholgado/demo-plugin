@@ -1,11 +1,11 @@
 package com.marcosholgado.droidcon18.plugin.actions.jira
 
-import android.util.Log
 import com.intellij.openapi.project.Project
 import com.intellij.util.Base64
 import com.marcosholgado.droidcon18.plugin.actions.jira.network.*
 import com.marcosholgado.droidcon18.plugin.components.JiraComponent
 import git4idea.repo.GitRepositoryManager
+import hu.akarnokd.rxjava2.swing.SwingSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -18,7 +18,7 @@ class JiraMoveDialogPresenter @Inject constructor(
 ) {
 
     var disposable: Disposable? = null
-    var branch: String = ""
+    var ticket: String = ""
 
     fun load() {
         getBranch()
@@ -29,33 +29,39 @@ class JiraMoveDialogPresenter @Inject constructor(
         val repositoryManager = GitRepositoryManager.getInstance(project)
 
         for (repository in repositoryManager.repositories) {
-            branch = repository.currentBranch!!.name
+            ticket = repository.currentBranch!!.name
             break
         }
 
-        view.setBranch(branch)
+        val component = JiraComponent.getInstance(project)
+        val regex = Regex(component.regex)
+        val match = regex.find(ticket)
+
+        match?.let {
+            ticket = match.value
+            view.setTicket(ticket)
+        }
     }
 
     private fun getTransitions() {
         val auth = getAuthCode()
-        disposable = jiraService.getTransitions(auth,branch)
+        disposable = jiraService.getTransitions(auth,ticket)
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.newThread())
+                .observeOn(SwingSchedulers.edt())
                 .subscribe(
                         { response ->
                             view.loadTransitions(response.transitions)
                         },
                         { error ->
-                            Log.d("ERROR", error.message)
+                            view.error(error)
                         }
                 )
     }
 
     private fun getAuthCode() : String {
-        val component = JiraComponent.getInstance(project!!)
+        val component = JiraComponent.getInstance(project)
         val username = component.username
         val password = component.password
-
         val data: ByteArray = "$username:$password".toByteArray(Charsets.UTF_8)
         return "Basic " + Base64.encode(data)
     }
@@ -64,16 +70,15 @@ class JiraMoveDialogPresenter @Inject constructor(
         val auth = getAuthCode()
         val transitionData = TransitionData(selectedItem)
 
-        disposable = jiraService.doTransition(auth, branch, transitionData)
+        disposable = jiraService.doTransition(auth, ticket, transitionData)
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.newThread())
+                .observeOn(SwingSchedulers.edt())
                 .subscribe(
                         {
-                            view.close()
-                            Log.d("YAY", it.toString())
+                            view.success(selectedItem, ticket)
                         },
                         { error ->
-                            Log.d("ERROR", error.message)
+                            view.error(error)
                         }
                 )
     }
