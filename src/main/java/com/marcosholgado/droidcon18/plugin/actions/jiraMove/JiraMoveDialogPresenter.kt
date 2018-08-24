@@ -1,8 +1,8 @@
-package com.marcosholgado.droidcon18.plugin.actions.jira
+package com.marcosholgado.droidcon18.plugin.actions.jiraMove
 
 import com.intellij.openapi.project.Project
 import com.intellij.util.Base64
-import com.marcosholgado.droidcon18.plugin.actions.jira.network.*
+import com.marcosholgado.droidcon18.plugin.actions.jiraMove.network.*
 import com.marcosholgado.droidcon18.plugin.components.JiraComponent
 import git4idea.repo.GitRepositoryManager
 import hu.akarnokd.rxjava2.swing.SwingSchedulers

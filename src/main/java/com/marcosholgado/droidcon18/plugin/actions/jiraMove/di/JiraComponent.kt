@@ -1,6 +1,6 @@
-package com.marcosholgado.droidcon18.plugin.actions.jira.di
+package com.marcosholgado.droidcon18.plugin.actions.jiraMove.di
 
-import com.marcosholgado.droidcon18.plugin.actions.jira.JiraMoveDialog
+import com.marcosholgado.droidcon18.plugin.actions.jiraMove.JiraMoveDialog
 import dagger.Component
 
 @Component(modules = [JiraModule::class])

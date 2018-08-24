@@ -1,4 +1,4 @@
-package com.marcosholgado.droidcon18.plugin.actions.jira
+package com.marcosholgado.droidcon18.plugin.actions.jiraMove
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent

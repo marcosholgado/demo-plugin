@@ -1,4 +1,4 @@
-package com.marcosholgado.droidcon18.plugin.actions.jira.network
+package com.marcosholgado.droidcon18.plugin.actions.jiraMove.network
 
 data class Transition(val id: String, val name: String = "") {
     override fun toString(): String = name

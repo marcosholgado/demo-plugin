@@ -1,4 +1,4 @@
-package com.marcosholgado.droidcon18.plugin.actions.jira.network
+package com.marcosholgado.droidcon18.plugin.actions.jiraMove.network
 
 import io.reactivex.Completable
 import io.reactivex.Single

@@ -1,12 +1,12 @@
-package com.marcosholgado.droidcon18.plugin.actions.jira
+package com.marcosholgado.droidcon18.plugin.actions.jiraMove
 
 import com.intellij.notification.*
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogWrapper
-import com.marcosholgado.droidcon18.plugin.actions.jira.di.DaggerJiraComponent
-import com.marcosholgado.droidcon18.plugin.actions.jira.di.JiraModule
-import com.marcosholgado.droidcon18.plugin.actions.jira.network.Transition
+import com.marcosholgado.droidcon18.plugin.actions.jiraMove.di.DaggerJiraComponent
+import com.marcosholgado.droidcon18.plugin.actions.jiraMove.di.JiraModule
+import com.marcosholgado.droidcon18.plugin.actions.jiraMove.network.Transition
 import javax.inject.Inject
 import javax.swing.*
 

@@ -1,7 +1,7 @@
-package com.marcosholgado.droidcon18.plugin.actions.jira
+package com.marcosholgado.droidcon18.plugin.actions.jiraMove
 
 import com.intellij.openapi.ui.ComboBox
-import com.marcosholgado.droidcon18.plugin.actions.jira.network.Transition
+import com.marcosholgado.droidcon18.plugin.actions.jiraMove.network.Transition
 import java.awt.Dimension
 import javax.swing.*
 

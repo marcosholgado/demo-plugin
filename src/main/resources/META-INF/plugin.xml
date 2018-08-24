@@ -38,7 +38,7 @@
 
     <actions>
         <action id="JiraMoveTicket"
-                class="com.marcosholgado.droidcon18.plugin.actions.jira.JiraMoveAction"
+                class="com.marcosholgado.droidcon18.plugin.actions.jiraMove.JiraMoveAction"
                 text="Move Ticket"
                 description="Move Ticket in Jira">
             <add-to-group group-id="RunContextPopupGroup" anchor="last"/>

@@ -1,8 +1,8 @@
-package com.marcosholgado.droidcon18.plugin.actions.jira.di
+package com.marcosholgado.droidcon18.plugin.actions.jiraMove.di
 
 import com.intellij.openapi.project.Project
-import com.marcosholgado.droidcon18.plugin.actions.jira.JiraMoveDialog
-import com.marcosholgado.droidcon18.plugin.actions.jira.network.JiraService
+import com.marcosholgado.droidcon18.plugin.actions.jiraMove.JiraMoveDialog
+import com.marcosholgado.droidcon18.plugin.actions.jiraMove.network.JiraService
 import com.marcosholgado.droidcon18.plugin.components.JiraComponent
 import dagger.Module
 import dagger.Provides
