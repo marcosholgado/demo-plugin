@@ -2,6 +2,7 @@ package com.marcosholgado.droidcon18.plugin.components
 
 import com.intellij.notification.NotificationListener
 import com.intellij.notification.NotificationType
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.*
 import com.intellij.openapi.project.Project
 import com.intellij.util.xmlb.XmlSerializerUtil
@@ -28,15 +29,18 @@ class JiraComponent constructor(project: Project? = null): AbstractProjectCompon
     override fun initComponent() {
         super.initComponent()
 
-        val message= Utils.createHyperLink("Android templates have been updated, click", "here", "to install the new templates")
-        val listener =   NotificationListener { notification, event ->
-            if (event.eventType === HyperlinkEvent.EventType.ACTIVATED) {
-                notification.hideBalloon()
-                FileUtils.extract("/androidTemplates/", "/.android/templates/other", this.myProject)
-            }
-        }
+        val component = ApplicationManager.getApplication().getComponent(DroidconComponent::class.java)
 
-        Utils.createNotification("Update", message, myProject, NotificationType.INFORMATION, listener)
+        if (component.shouldUpdateTemplates()) {
+            val message = Utils.createHyperLink("Android templates have been updated, click", "here", "to install the new templates")
+            val listener = NotificationListener { notification, event ->
+                if (event.eventType === HyperlinkEvent.EventType.ACTIVATED) {
+                    notification.hideBalloon()
+                    FileUtils.copyTemplates("/androidTemplates/", "/.android/templates/other", this.myProject)
+                }
+            }
+            Utils.createNotification("Update", message, myProject, NotificationType.INFORMATION, listener)
+        }
     }
 
     companion object {

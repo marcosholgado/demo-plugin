@@ -1,7 +1,9 @@
 package com.marcosholgado.droidcon18.plugin.utils
 
 import com.intellij.notification.NotificationType
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
+import com.marcosholgado.droidcon18.plugin.components.DroidconComponent
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -10,7 +12,7 @@ import java.nio.file.Files
 
 object FileUtils {
 
-    fun extract(sourceDirectory: String, writeDirectory: String, project: Project) {
+    fun copyTemplates(sourceDirectory: String, writeDirectory: String, project: Project) {
         val dirURL = javaClass.getResource(sourceDirectory)
         val path = sourceDirectory.substring(1)
         val home = System.getProperty("user.home")
@@ -51,6 +53,8 @@ object FileUtils {
                     inputStream.close()
                 }
             }
+            val component = ApplicationManager.getApplication().getComponent(DroidconComponent::class.java)
+            component.updateTemplatesRevision()
 
             val message = Utils.createHyperLink("All templates were copied, please", "restart", "Android Studio now.")
 

@@ -19,6 +19,12 @@
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>Git4Idea</depends>
 
+    <application-components>
+        <component>
+            <implementation-class>com.marcosholgado.droidcon18.plugin.components.DroidconComponent</implementation-class>
+        </component>
+    </application-components>
+
     <project-components>
         <!-- Add your project components here -->
         <component>
