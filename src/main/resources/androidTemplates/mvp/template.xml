@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <template
-    format="1"
+    format="4"
     revision="1"
     name="MVP"
     minApi="23"
     minBuildApi="23"
     description="MVP pattern for fragments in modules">
 
-    <category value="MVP" />
+    <category value="Droidcon18" />
 	<formfactor value="Mobile" />
 
     <parameter
