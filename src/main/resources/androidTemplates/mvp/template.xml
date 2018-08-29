@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<template
+    format="1"
+    revision="1"
+    name="MVP"
+    minApi="23"
+    minBuildApi="23"
+    description="MVP pattern for fragments in modules">
+
+    <category value="MVP" />
+	<formfactor value="Mobile" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <parameter
+            id="name"
+            name="Name"
+            type="string"
+            constraints="nonempty"
+            default="MyClass"
+            help="This is the name of the main class." />
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_droidcon.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+
+    <execute file="recipe.xml.ftl" />
+
+</template>

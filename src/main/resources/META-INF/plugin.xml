@@ -37,6 +37,17 @@
     </extensions>
 
     <actions>
+        <group id="Droidcon.Menu"
+               text="_Droidcon"
+               description="Droidcon Toolbar Menu">
+
+            <add-to-group group-id="MainMenu" anchor="last"/>
+
+            <action id="CopyTemplates"
+                    class="com.marcosholgado.droidcon18.plugin.actions.copyTemplates.CopyTemplatesAction"
+                    text="_Copy Templates"
+                    description="Copy Android Templates"/>
+        </group>
         <action id="JiraMoveTicket"
                 class="com.marcosholgado.droidcon18.plugin.actions.jiraMove.JiraMoveAction"
                 text="Move Ticket"
