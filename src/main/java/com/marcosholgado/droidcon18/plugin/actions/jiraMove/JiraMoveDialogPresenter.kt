@@ -34,8 +34,7 @@ class JiraMoveDialogPresenter @Inject constructor(
         }
 
         val component = JiraComponent.getInstance(project)
-        val regex = Regex(component.regex)
-        val match = regex.find(ticket)
+        val match = Regex(component.regex).find(ticket)
 
         match?.let {
             ticket = match.value
@@ -45,7 +44,7 @@ class JiraMoveDialogPresenter @Inject constructor(
 
     private fun getTransitions() {
         val auth = getAuthCode()
-        disposable = jiraService.getTransitions(auth,ticket)
+        disposable = jiraService.getTransitions(auth, ticket)
                 .subscribeOn(Schedulers.io())
                 .observeOn(SwingSchedulers.edt())
                 .subscribe(
