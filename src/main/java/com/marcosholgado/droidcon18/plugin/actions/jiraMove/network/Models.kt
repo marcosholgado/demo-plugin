@@ -7,3 +7,5 @@ data class Transition(val id: String, val name: String = "") {
 data class TransitionsResponse(val transitions: List<Transition>)
 
 data class TransitionData(val transition: Transition)
+
+data class Comment(val body: String)

@@ -14,4 +14,9 @@ interface JiraService {
     fun doTransition(@Header("Authorization") authKey: String,
                      @Path("issueId") issueId: String,
                      @Body transitionData: TransitionData): Completable
+
+    @POST("issue/{issueId}/comment")
+    fun comment(@Header("Authorization") authKey: String,
+                     @Path("issueId") issueId: String,
+                     @Body commentData: Comment): Completable
 }

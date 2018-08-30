@@ -31,7 +31,7 @@ class JiraMoveDialog constructor(val project: Project) : DialogWrapper(true) {
 
     override fun createCenterPanel(): JComponent = panel
 
-    override fun doOKAction() = presenter.doTransition(panel.getTransition(), "")
+    override fun doOKAction() = presenter.doTransition(panel.getTransition(), panel.txtJiraTicket.text, panel.txtComment.text)
 
     fun success(transition: Transition, ticket: String) {
         close(DialogWrapper.OK_EXIT_CODE)

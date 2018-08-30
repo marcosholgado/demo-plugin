@@ -7,9 +7,9 @@ import javax.swing.*
 
 class JiraMovePanel : JPanel() {
 
-    private val txtJiraTicket = JTextField()
     private val comboTransitions = ComboBox<Transition>()
-    private val txtComment = JTextArea()
+    val txtJiraTicket = JTextField()
+    val txtComment = JTextArea()
 
     init {
         initComponents()

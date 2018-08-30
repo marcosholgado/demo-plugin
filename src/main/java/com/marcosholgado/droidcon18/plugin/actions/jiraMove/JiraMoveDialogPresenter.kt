@@ -6,6 +6,7 @@ import com.marcosholgado.droidcon18.plugin.actions.jiraMove.network.*
 import com.marcosholgado.droidcon18.plugin.components.JiraComponent
 import git4idea.repo.GitRepositoryManager
 import hu.akarnokd.rxjava2.swing.SwingSchedulers
+import io.reactivex.Completable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -17,8 +18,8 @@ class JiraMoveDialogPresenter @Inject constructor(
         private val jiraService: JiraService
 ) {
 
-    var disposable: Disposable? = null
-    var ticket: String = ""
+    private var disposable: Disposable? = null
+    private var ticket = ""
 
     fun load() {
         getBranch()
@@ -65,11 +66,16 @@ class JiraMoveDialogPresenter @Inject constructor(
         return "Basic " + Base64.encode(data)
     }
 
-    fun doTransition(selectedItem: Transition, text: String) {
+    fun doTransition(selectedItem: Transition, ticket: String, text: String) {
         val auth = getAuthCode()
         val transitionData = TransitionData(selectedItem)
+        val completable = mutableListOf(jiraService.doTransition(auth, ticket, transitionData))
 
-        disposable = jiraService.doTransition(auth, ticket, transitionData)
+        if (text.isNotBlank()) {
+            completable.add(jiraService.comment(auth, ticket, Comment(text)))
+        }
+
+        disposable = Completable.merge(completable)
                 .subscribeOn(Schedulers.io())
                 .observeOn(SwingSchedulers.edt())
                 .subscribe(
