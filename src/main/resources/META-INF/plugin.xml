@@ -61,10 +61,10 @@
             <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
             <keyboard-shortcut first-keystroke="control j" second-keystroke="p" keymap="$default"/>
         </action>
-        <action id="TestAction"
-                class="com.marcosholgado.droidcon18.plugin.actions.test.TestAction"
-                text="Test Action"
-                description="Test Action">
+        <action id="NewModule"
+                class="com.marcosholgado.droidcon18.plugin.actions.newModule.NewModuleAction"
+                text="New Module"
+                description="Adds a new module">
             <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
             <keyboard-shortcut first-keystroke="control j" second-keystroke="o" keymap="$default"/>
         </action>
