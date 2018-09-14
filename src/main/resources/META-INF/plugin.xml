@@ -18,6 +18,9 @@
     <depends>org.jetbrains.kotlin</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>Git4Idea</depends>
+    <!--<depends>com.intellij.modules.androidstudio</depends>-->
+
+    <idea-version since-build="181.00"/>
 
     <application-components>
         <component>
@@ -61,7 +64,7 @@
             <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
             <keyboard-shortcut first-keystroke="control j" second-keystroke="p" keymap="$default"/>
         </action>
-        <action id="NewModule"
+        <action id="NewDroidconModule"
                 class="com.marcosholgado.droidcon18.plugin.actions.newModule.NewModuleAction"
                 text="New Module"
                 description="Adds a new module">
