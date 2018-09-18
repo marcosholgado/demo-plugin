@@ -4,6 +4,7 @@ import com.intellij.notification.NotificationType
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import com.marcosholgado.droidcon18.plugin.components.DroidconComponent
+import com.marcosholgado.droidcon18.plugin.utils.DroidconBundle.message
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -56,13 +57,35 @@ object FileUtils {
             val component = ApplicationManager.getApplication().getComponent(DroidconComponent::class.java)
             component.updateTemplatesRevision()
 
-            val message = Utils.createHyperLink("All templates were copied, please", "restart", "Android Studio now.")
+            val msg = Utils.createHyperLink(
+                    message("utils.template.success.pre"),
+                    message("utils.template.success.link"),
+                    message("utils.template.success.post")
+            )
 
-            Utils.createNotification("Completed", message, project, NotificationType.INFORMATION, Utils.restartListener())
+            Utils.createNotification(
+                    message("utils.template.completed"),
+                    msg,
+                    project,
+                    NotificationType.INFORMATION,
+                    Utils.restartListener()
+            )
         } else if (dirURL == null) {
-            Utils.createNotification("Error", "Can't find $sourceDirectory on the classpath", project, NotificationType.ERROR, null)
+            Utils.createNotification(
+                    message("utils.template.error"),
+                    message("utils.template.error.classpath", sourceDirectory),
+                    project,
+                    NotificationType.ERROR,
+                    null
+            )
         } else {
-            Utils.createNotification("Error",  "Don't know how to handle extracting from $dirURL", project, NotificationType.ERROR, null)
+            Utils.createNotification(
+                    message("utils.template.error"),
+                    message("utils.template.error.extracting", dirURL),
+                    project,
+                    NotificationType.ERROR,
+                    null
+            )
         }
     }
 }

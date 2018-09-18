@@ -3,6 +3,7 @@ package com.marcosholgado.droidcon18.plugin.configuration
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.project.Project
 import com.marcosholgado.droidcon18.plugin.components.JiraComponent
+import com.marcosholgado.droidcon18.plugin.utils.DroidconBundle.message
 import javax.swing.*
 import javax.swing.event.DocumentEvent
 import javax.swing.event.DocumentListener
@@ -24,7 +25,7 @@ class JiraSettings(private val project: Project): Configurable, DocumentListener
 
     override fun isModified(): Boolean = modified
 
-    override fun getDisplayName(): String = "Jira Plugin"
+    override fun getDisplayName(): String = message("jira.settings.title")
 
     override fun apply() {
         val config = JiraComponent.getInstance(project)

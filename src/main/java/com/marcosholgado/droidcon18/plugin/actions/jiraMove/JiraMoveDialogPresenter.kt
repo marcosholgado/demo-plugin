@@ -4,6 +4,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.util.Base64
 import com.marcosholgado.droidcon18.plugin.actions.jiraMove.network.*
 import com.marcosholgado.droidcon18.plugin.components.JiraComponent
+import com.marcosholgado.droidcon18.plugin.utils.DroidconBundle.message
 import git4idea.repo.GitRepositoryManager
 import hu.akarnokd.rxjava2.swing.SwingSchedulers
 import io.reactivex.Completable
@@ -63,7 +64,7 @@ class JiraMoveDialogPresenter @Inject constructor(
         val username = component.username
         val password = component.password
         val data: ByteArray = "$username:$password".toByteArray(Charsets.UTF_8)
-        return "Basic " + Base64.encode(data)
+        return message("auth.basic", Base64.encode(data))
     }
 
     fun doTransition(selectedItem: Transition, ticket: String, text: String) {

@@ -7,6 +7,7 @@ import com.intellij.openapi.ui.DialogWrapper
 import com.marcosholgado.droidcon18.plugin.actions.jiraMove.di.DaggerJiraComponent
 import com.marcosholgado.droidcon18.plugin.actions.jiraMove.di.JiraModule
 import com.marcosholgado.droidcon18.plugin.actions.jiraMove.network.Transition
+import com.marcosholgado.droidcon18.plugin.utils.DroidconBundle.message
 import javax.inject.Inject
 import javax.swing.*
 
@@ -39,8 +40,8 @@ class JiraMoveDialog constructor(val project: Project) : DialogWrapper(true) {
         ApplicationManager.getApplication().invokeLater {
             val stickyNotification = NotificationGroup("success", NotificationDisplayType.BALLOON, true)
             stickyNotification.createNotification(
-                    "Success",
-                    "$ticket moved to column ${transition.name}",
+                    message("dialog.success"),
+                    message("jira.action.success", ticket, transition.name),
                     NotificationType.INFORMATION
                     , null
             ).notify(project)
@@ -50,7 +51,7 @@ class JiraMoveDialog constructor(val project: Project) : DialogWrapper(true) {
     fun error(error: Throwable) {
         ApplicationManager.getApplication().invokeLater {
             val stickyNotification = NotificationGroup("error", NotificationDisplayType.BALLOON, true)
-            stickyNotification.createNotification("Error", error.localizedMessage, NotificationType.ERROR, null).notify(project)
+            stickyNotification.createNotification(message("dialog.error"), error.localizedMessage, NotificationType.ERROR, null).notify(project)
         }
     }
 

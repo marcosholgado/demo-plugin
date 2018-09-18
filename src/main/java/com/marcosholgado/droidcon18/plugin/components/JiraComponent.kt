@@ -6,6 +6,7 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.*
 import com.intellij.openapi.project.Project
 import com.intellij.util.xmlb.XmlSerializerUtil
+import com.marcosholgado.droidcon18.plugin.utils.DroidconBundle.message
 import java.io.Serializable
 import com.marcosholgado.droidcon18.plugin.utils.FileUtils
 import com.marcosholgado.droidcon18.plugin.utils.Utils
@@ -32,14 +33,18 @@ class JiraComponent constructor(project: Project? = null): AbstractProjectCompon
         val component = ApplicationManager.getApplication().getComponent(DroidconComponent::class.java)
 
         if (component.shouldUpdateTemplates()) {
-            val message = Utils.createHyperLink("Android templates have been updated, click", "here", "to install the new templates")
+            val message = Utils.createHyperLink(
+                    message("component.jira.template.success.pre"),
+                    message("component.jira.template.success.link"),
+                    message("component.jira.template.success.post")
+            )
             val listener = NotificationListener { notification, event ->
                 if (event.eventType === HyperlinkEvent.EventType.ACTIVATED) {
                     notification.hideBalloon()
                     FileUtils.copyTemplates("/androidTemplates/", "/.android/templates/other", this.myProject)
                 }
             }
-            Utils.createNotification("Update", message, myProject, NotificationType.INFORMATION, listener)
+            Utils.createNotification(message("dialog.update"), message, myProject, NotificationType.INFORMATION, listener)
         }
     }
 

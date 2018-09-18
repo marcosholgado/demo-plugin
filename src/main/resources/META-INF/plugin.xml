@@ -26,6 +26,12 @@
         </component>
     </application-components>
 
+    <extensions defaultExtensionNs="com.android">
+        <!-- Add Droidcon module to the New Module wizard -->
+        <moduleDescriptionProvider implementation="com.marcosholgado.droidcon18.plugin.actions.newModule.DroidconModuleProvider"/>
+    </extensions>
+
+
     <project-components>
         <!-- Add your project components here -->
         <component>

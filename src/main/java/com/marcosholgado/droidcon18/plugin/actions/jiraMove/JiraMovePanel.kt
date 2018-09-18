@@ -2,6 +2,7 @@ package com.marcosholgado.droidcon18.plugin.actions.jiraMove
 
 import com.intellij.openapi.ui.ComboBox
 import com.marcosholgado.droidcon18.plugin.actions.jiraMove.network.Transition
+import com.marcosholgado.droidcon18.plugin.utils.DroidconBundle.message
 import java.awt.Dimension
 import javax.swing.*
 
@@ -18,7 +19,7 @@ class JiraMovePanel : JPanel() {
     private fun initComponents() {
         layout = null
 
-        val lblJiraTicket = JLabel("Jira Ticket")
+        val lblJiraTicket = JLabel(message("jira.move.label.ticket"))
         lblJiraTicket.setBounds(25, 33, 77, 16)
         add(lblJiraTicket)
 
@@ -26,14 +27,14 @@ class JiraMovePanel : JPanel() {
         add(txtJiraTicket)
         txtJiraTicket.columns = 10
 
-        val lblTransition = JLabel("Transition")
+        val lblTransition = JLabel(message("jira.move.label.transition"))
         lblTransition.setBounds(25, 75, 77, 16)
         add(lblTransition)
 
         comboTransitions.setBounds(114, 71, 183, 27)
         add(comboTransitions)
 
-        val lblComment = JLabel("Comment")
+        val lblComment = JLabel(message("jira.move.label.comment"))
         lblComment.setBounds(25, 119, 77, 16)
         add(lblComment)
 
