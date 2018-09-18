@@ -13,12 +13,9 @@
     <!-- uncomment to enable plugin in all products
     <depends>com.intellij.modules.lang</depends>
     -->
-    <depends>com.intellij.modules.lang</depends>
     <depends>org.jetbrains.android</depends>
     <depends>org.jetbrains.kotlin</depends>
-    <depends>org.jetbrains.plugins.gradle</depends>
     <depends>Git4Idea</depends>
-    <depends>com.intellij.modules.androidstudio</depends>
 
     <application-components>
         <component>
@@ -67,13 +64,6 @@
                 description="Move Ticket in Jira">
             <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
             <keyboard-shortcut first-keystroke="control j" second-keystroke="p" keymap="$default"/>
-        </action>
-        <action id="NewDroidconModule"
-                class="com.marcosholgado.droidcon18.plugin.actions.newModule.NewModuleAction"
-                text="New Module"
-                description="Adds a new module">
-            <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
-            <keyboard-shortcut first-keystroke="control j" second-keystroke="o" keymap="$default"/>
         </action>
     </actions>
 </idea-plugin>

@@ -29,6 +29,10 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-runtime:${kotlin_version}"
+
+    compileOnly fileTree(dir: "$StudioCompilePath/plugins/android/lib", include: ['*.jar'])
+    compileOnly fileTree(dir: "$StudioCompilePath/lib", include: ['*.jar'])
 
     compile 'com.squareup.retrofit2:retrofit:2.4.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
@@ -51,24 +55,25 @@ compileTestKotlin {
 }
 intellij {
     version '2018.1'
-    type 'AI'
-    // version '182.4129.33'
-    // version '2018.1.6'
-    // version '173.4301.25'
     pluginName 'droidcon18'
-    plugins = ['android', 'Kotlin', 'Gradle', 'git4idea']
+    plugins = ['Kotlin', 'Gradle', 'git4idea']
     updateSinceUntilBuild false
-//    alternativeIdePath = '/Applications/Android Studio 3.2 Preview.app'
-    alternativeIdePath = '/Applications/Android Studio.app'
+    localPath = project.hasProperty("StudioRunPath") ? StudioRunPath : StudioCompilePath
+
 }
-//idea {
-//    module {
-//        sourceDirs += file('build/generated/source/kapt/main')
-//        generatedSourceDirs += file('build/generated/source/kapt/main')
-//    }
-//}
+
 patchPluginXml {
     changeNotes """
       Add change notes here.<br>
       <em>most HTML tags may be used</em>"""
 }
+
+task(verifySetup) {
+    doLast {
+        def ideaJar = "$StudioCompilePath/lib/idea.jar"
+        if (!file(ideaJar).exists()) {
+            throw new GradleException("$ideaJar not found, set StudioCompilePath in gradle.properties")
+        }
+    }
+}
+compileKotlin.dependsOn verifySetup

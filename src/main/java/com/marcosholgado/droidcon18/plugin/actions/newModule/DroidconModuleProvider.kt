@@ -4,13 +4,15 @@ import com.android.tools.idea.npw.FormFactor
 import com.android.tools.idea.npw.module.ConfigureAndroidModuleStep
 import com.android.tools.idea.npw.module.ModuleDescriptionProvider
 import com.android.tools.idea.npw.module.ModuleTemplateGalleryEntry
-import com.android.tools.idea.npw.module.NewModuleModel
+import com.android.tools.idea.npw.model.NewModuleModel
+import com.android.tools.idea.npw.model.NewProjectModel
 import com.android.tools.idea.templates.TemplateManager
 import com.android.tools.idea.wizard.model.SkippableWizardStep
+import com.intellij.util.IconUtil
 import com.marcosholgado.droidcon18.plugin.utils.DroidconBundle.message
 import com.marcosholgado.droidcon18.plugin.utils.DroidconIcons
 
-import javax.swing.*
+import java.awt.Image
 import java.io.File
 import java.util.ArrayList
 
@@ -36,7 +38,6 @@ class DroidconModuleProvider : ModuleDescriptionProvider {
                                 formFactor,
                                 minSdk,
                                 true,
-                                DroidconIcons.droidconIcon,
                                 message("droidcon.wizard.new.module"),
                                 metadata.description!!)
                         )
@@ -49,27 +50,34 @@ class DroidconModuleProvider : ModuleDescriptionProvider {
         return res
     }
 
-    private class DroidconModuleEntry internal constructor(private val myTemplateFile: File, private val myFormFactor: FormFactor, private val myMinSdkLevel: Int, private val myIsLibrary: Boolean,
-                                                           private val myIcon: Icon, private val myName: String, private val myDescription: String) : ModuleTemplateGalleryEntry {
+    private class DroidconModuleEntry internal constructor(private val templateFile: File,
+                                                           private val formFactor: FormFactor,
+                                                           private val minSdkLevel: Int,
+                                                           private val isLibrary: Boolean,
+                                                           private val name: String,
+                                                           private val description: String
+    ) : ModuleTemplateGalleryEntry {
 
-        override fun getTemplateFile(): File = myTemplateFile
+        override fun getTemplateFile(): File = templateFile
 
-        override fun getFormFactor(): FormFactor = myFormFactor
+        override fun getFormFactor(): FormFactor = formFactor
 
-        override fun isLibrary(): Boolean = myIsLibrary
+        override fun isLibrary(): Boolean = isLibrary
 
         override fun isInstantApp(): Boolean = false
 
-        override fun getIcon(): Icon? = myIcon
+        override fun getIcon(): Image? = IconUtil.toImage(DroidconIcons.droidconIcon)
 
-        override fun getName(): String = myName
+        override fun getName(): String = name
 
-        override fun getDescription(): String? = myDescription
+        override fun getDescription(): String? = description
 
         override fun toString(): String = name
 
-        override fun createStep(model: NewModuleModel): SkippableWizardStep<*> =
-                ConfigureAndroidModuleStep(model, myFormFactor, myMinSdkLevel, isLibrary, false, myName)
+        override fun createStep(model: NewModuleModel): SkippableWizardStep<*> {
+            val basePackage = NewProjectModel.getSuggestedProjectPackage(model.project.value, false)
+            return ConfigureAndroidModuleStep(model, formFactor, minSdkLevel, basePackage, isLibrary, false, name)
+        }
 
     }
 }
