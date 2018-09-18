@@ -5,7 +5,7 @@ import javax.swing.Icon
 
 object DroidconIcons {
 
-    fun load(path: String): Icon = IconLoader.getIcon(path, DroidconIcons::class.java)
+    private fun load(path: String): Icon = IconLoader.getIcon(path, DroidconIcons::class.java)
 
     val droidconIcon = load("/icons/template_new_project.png")
 
