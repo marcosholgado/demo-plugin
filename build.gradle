@@ -54,7 +54,6 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 intellij {
-    version '2018.1'
     pluginName 'droidcon18'
     plugins = ['Kotlin', 'Gradle', 'git4idea']
     updateSinceUntilBuild false
