@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.2.61'
+    ext.kotlin_version = '1.2.70'
 
     repositories {
         mavenCentral()
@@ -10,8 +10,7 @@ buildscript {
 }
 
 plugins {
-    id 'java'
-    id 'org.jetbrains.intellij' version '0.3.9'
+    id 'org.jetbrains.intellij' version '0.3.10'
 }
 
 group 'droidcon'
@@ -20,7 +19,6 @@ version '1.0-SNAPSHOT'
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'org.jetbrains.intellij'
-//apply plugin: 'idea'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -52,12 +50,16 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 intellij {
-    version '2018.1.6'
-    type 'IC'
+    version '2018.1'
+    type 'AI'
+    // version '182.4129.33'
+    // version '2018.1.6'
+    // version '173.4301.25'
     pluginName 'droidcon18'
     plugins = ['android', 'Kotlin', 'Gradle', 'git4idea']
     updateSinceUntilBuild false
-    alternativeIdePath = '/Applications/Android Studio 3.2 Preview.app'
+    //  alternativeIdePath = '/Applications/Android Studio 3.3 Preview.app'
+    alternativeIdePath = '/Applications/Android Studio.app'
 }
 //idea {
 //    module {

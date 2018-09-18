@@ -18,9 +18,7 @@
     <depends>org.jetbrains.kotlin</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>Git4Idea</depends>
-    <!--<depends>com.intellij.modules.androidstudio</depends>-->
-
-    <idea-version since-build="181.00"/>
+    <depends>com.intellij.modules.androidstudio</depends>
 
     <application-components>
         <component>

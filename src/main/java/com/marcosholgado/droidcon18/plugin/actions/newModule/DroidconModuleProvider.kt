@@ -7,7 +7,7 @@ import com.android.tools.idea.npw.module.ModuleTemplateGalleryEntry
 import com.android.tools.idea.npw.module.NewModuleModel
 import com.android.tools.idea.templates.TemplateManager
 import com.android.tools.idea.wizard.model.SkippableWizardStep
-import icons.AndroidIcons
+import com.marcosholgado.droidcon18.plugin.utils.DroidconIcons
 
 import javax.swing.*
 import java.io.File
@@ -32,7 +32,7 @@ class DroidconModuleProvider : ModuleDescriptionProvider {
                     val minSdk = metadata.minSdk
                     val formFactor = FormFactor.get(metadata.formFactor!!)
                     if (formFactor == FormFactor.MOBILE) {
-                        res.add(DroidconModuleEntry(templateFile, formFactor, minSdk, true, AndroidIcons.ModuleTemplates.Android,
+                        res.add(DroidconModuleEntry(templateFile, formFactor, minSdk, true, DroidconIcons.droidconIcon,
                                 message("android.wizard.module.new.library"), metadata.description!!))
                     } else {
                         // Hide other types
