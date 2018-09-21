@@ -28,6 +28,10 @@
         <moduleDescriptionProvider implementation="com.marcosholgado.droidcon18.plugin.actions.newModule.DroidconModuleProvider"/>
     </extensions>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <!--Add liveTemplates-->
+        <defaultLiveTemplatesProvider implementation="com.marcosholgado.droidcon18.plugin.liveTemplates.DroidconLiveTemplateProvider"/>
+    </extensions>
 
     <project-components>
         <!-- Add your project components here -->

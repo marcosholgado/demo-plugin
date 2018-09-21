@@ -1,0 +1,9 @@
+<templateSet group="Droidcon">
+  <template name="dc" value="import com.marcosholgado.core.di.CoreComponent&#10;import com.marcosholgado.core.di.FeatureScope&#10;import dagger.Component&#10;&#10;@Component(modules = [$moduleName$::class], dependencies = [CoreComponent::class])&#10;@FeatureScope&#10;interface $class$ {&#10;    &#10;}" description="Dagger component" toReformat="true" toShortenFQNames="true">
+    <variable name="moduleName" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="class" expression="fileNameWithoutExtension()" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="KOTLIN" value="true" />
+    </context>
+  </template>
+</templateSet>
