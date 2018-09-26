@@ -25,6 +25,15 @@
             default="MyClass"
             help="This is the name of the main class." />
 
+    <parameter
+            id="fragment_layout"
+            type="string"
+            constraints="layout|nonempty|unique"
+            default="fragment_item"
+            suggest="fragment_${extractLetters(name?lower_case)}"
+            name="Object content layout file name" />
+
+
     <!-- 128x128 thumbnails relative to template.xml -->
     <thumbs>
         <!-- default thumbnail is required -->

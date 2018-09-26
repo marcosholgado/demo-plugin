@@ -7,6 +7,7 @@
     <#assign espresso=hasDependency('com.android.support.test.espresso:espresso-core', 'androidTestCompile')>
     <#assign supportRunner=hasDependency('com.android.support.test:runner', 'androidTestCompile')>
     <#assign testSupportLib=espresso && supportRunner>
+    <#assign useAndroidX=true>
 
     <global id="projectOut" value="." />
     <global id="themeName" type="string" value="${themeName}" />
