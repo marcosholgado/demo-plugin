@@ -11,5 +11,7 @@ dependencies {
     ${getConfigurationName("compile")} fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':core')
 
-    <@shared.watchProjectDependencies/>
+    testImplementation libraries.jUnit
+    androidTestImplementation libraries.testRunner
+    androidTestImplementation libraries.espressoCore
 }

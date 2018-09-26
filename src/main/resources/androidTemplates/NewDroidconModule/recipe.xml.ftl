@@ -20,10 +20,6 @@
 
     <instantiate from="root/test/app_package/ExampleUnitTest.${ktOrJavaExt}.ftl"
                    to="${escapeXmlAttribute(unitTestOut)}/ExampleUnitTest.${ktOrJavaExt}" />
-    
-    <dependency mavenUrl="libraries.jUnit" gradleConfiguration="testImplementation" />
-    <dependency mavenUrl="libraries.testRunner" gradleConfiguration="androidTestImplementation" />
-    <dependency mavenUrl="libraries.espressoCore" gradleConfiguration="androidTestImplementation" />
 
     <mkdir at="${escapeXmlAttribute(srcOut)}" />
 
