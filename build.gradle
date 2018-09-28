@@ -31,9 +31,6 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-runtime:${kotlin_version}"
 
-    compileOnly fileTree(dir: "$StudioCompilePath/plugins/android/lib", include: ['*.jar'])
-    compileOnly fileTree(dir: "$StudioCompilePath/lib", include: ['*.jar'])
-
     compile 'com.squareup.retrofit2:retrofit:2.4.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     compile 'com.squareup.retrofit2:converter-gson:2.4.0'
@@ -53,12 +50,12 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
+
 intellij {
     pluginName 'droidcon18'
-    plugins = ['Kotlin', 'Gradle', 'git4idea']
+    plugins = ['Kotlin', 'git4idea', 'android']
     updateSinceUntilBuild false
-    localPath = project.hasProperty("StudioRunPath") ? StudioRunPath : StudioCompilePath
-
+    localPath ASRunPath
 }
 
 patchPluginXml {
@@ -66,13 +63,3 @@ patchPluginXml {
       Add change notes here.<br>
       <em>most HTML tags may be used</em>"""
 }
-
-task(verifySetup) {
-    doLast {
-        def ideaJar = "$StudioCompilePath/lib/idea.jar"
-        if (!file(ideaJar).exists()) {
-            throw new GradleException("$ideaJar not found, set StudioCompilePath in gradle.properties")
-        }
-    }
-}
-compileKotlin.dependsOn verifySetup

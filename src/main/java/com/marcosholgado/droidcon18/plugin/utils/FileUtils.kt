@@ -13,7 +13,7 @@ import java.nio.file.Files
 
 object FileUtils {
 
-    fun copyTemplates(sourceDirectory: String, writeDirectory: String, project: Project) {
+    fun copyTemplates(sourceDirectory: String, writeDirectory: String, project: Project?) {
         val dirURL = javaClass.getResource(sourceDirectory)
         val path = sourceDirectory.substring(1)
         val home = System.getProperty("user.home")

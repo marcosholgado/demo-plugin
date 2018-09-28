@@ -11,7 +11,7 @@ import javax.swing.event.HyperlinkEvent
 
 object Utils {
 
-    fun createNotification(title: String, message: String, project: Project, type: NotificationType, listener: NotificationListener?) {
+    fun createNotification(title: String, message: String, project: Project?, type: NotificationType, listener: NotificationListener?) {
         val stickyNotification = NotificationGroup("droidcon$title", NotificationDisplayType.BALLOON, true)
         stickyNotification.createNotification(title, message, type, listener).notify(project)
     }
