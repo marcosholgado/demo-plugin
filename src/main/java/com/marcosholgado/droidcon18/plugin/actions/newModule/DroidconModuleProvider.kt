@@ -38,7 +38,7 @@ class DroidconModuleProvider : ModuleDescriptionProvider {
                                 formFactor,
                                 minSdk,
                                 true,
-                                message("droidcon.wizard.new.module"),
+                                metadata.title!!,
                                 metadata.description!!)
                         )
                     } else {
