@@ -51,7 +51,7 @@
     </extensions>
 
     <actions>
-        <group id="Droidcon.Menu"
+        <group id="Droidcon.TopMenu"
                text="_Droidcon"
                description="Droidcon Toolbar Menu">
 
@@ -62,12 +62,18 @@
                     text="_Copy Templates"
                     description="Copy Android Templates"/>
         </group>
+        <group id="DroidconMenu"
+               text="_Droidcon"
+               description="Droidcon">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+            <separator/>
+        </group>
         <action id="JiraMoveTicket"
                 class="com.marcosholgado.droidcon18.plugin.actions.jiraMove.JiraMoveAction"
                 text="Move Ticket"
                 description="Move Ticket in Jira">
-            <add-to-group group-id="RunContextPopupGroup" anchor="last"/>
-            <keyboard-shortcut first-keystroke="control j" second-keystroke="p" keymap="$default"/>
+            <add-to-group group-id="DroidconMenu" anchor="first"/>
+            <keyboard-shortcut first-keystroke="control alt k" keymap="$default"/>
         </action>
     </actions>
 </idea-plugin>

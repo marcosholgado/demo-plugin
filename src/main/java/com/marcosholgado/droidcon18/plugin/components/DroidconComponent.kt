@@ -18,8 +18,8 @@ import javax.swing.event.HyperlinkEvent
 ])
 class DroidconComponent: ApplicationComponent, Serializable, PersistentStateComponent<DroidconComponent> {
 
-    var templatesRevision = 1
-    var templatesLocalRevision = 0 // Do not change
+    private var templatesRevision = 1
+    private var templatesLocalRevision = 0 // Do not change
 
     override fun getState(): DroidconComponent? = this
 
@@ -43,7 +43,9 @@ class DroidconComponent: ApplicationComponent, Serializable, PersistentStateComp
             val listener = NotificationListener { notification, event ->
                 if (event.eventType === HyperlinkEvent.EventType.ACTIVATED) {
                     notification.hideBalloon()
-                    FileUtils.copyTemplates("/androidTemplates/", "/.android/templates/other", null)
+                    val sourceDirectoryList = listOf("/androidTemplates/", "/projectTemplates/")
+                    val writeDirectoryList = listOf("/.android/templates/other", "/.android/templates")
+                    FileUtils.copyTemplates(sourceDirectoryList, writeDirectoryList, null)
                 }
             }
             Utils.createNotification(DroidconBundle.message("dialog.update"), message, null, NotificationType.INFORMATION, listener)

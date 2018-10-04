@@ -33,15 +33,11 @@
             suggest="fragment_${extractLetters(name?lower_case)}"
             name="Object content layout file name" />
 
-
-    <!-- 128x128 thumbnails relative to template.xml -->
     <thumbs>
-        <!-- default thumbnail is required -->
         <thumb>template_droidcon.png</thumb>
     </thumbs>
 
     <globals file="globals.xml.ftl" />
-
     <execute file="recipe.xml.ftl" />
 
 </template>

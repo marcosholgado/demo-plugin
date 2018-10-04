@@ -7,6 +7,8 @@ import com.marcosholgado.droidcon18.plugin.utils.FileUtils
 class CopyTemplatesAction: AnAction() {
 
     override fun actionPerformed(event: AnActionEvent) {
-        FileUtils.copyTemplates("/androidTemplates/", "/.android/templates/other", event.project!!)
+        val sourceDirectoryList = listOf("/androidTemplates/", "/projectTemplates/")
+        val writeDirectoryList = listOf("/.android/templates/other", "/.android/templates")
+        FileUtils.copyTemplates(sourceDirectoryList, writeDirectoryList, event.project!!)
     }
 }
