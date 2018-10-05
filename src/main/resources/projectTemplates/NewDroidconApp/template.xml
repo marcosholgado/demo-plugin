@@ -2,35 +2,25 @@
 <template
     format="5"
     revision="1"
-    name="Android Droidcon Module"
-    description="Creates a new Android module.">
+    name="Android Droidcon App"
+    description="Creates a new Droidcon App.">
 
     <category value="Droidcon" />
     <formfactor value="Mobile" />
-
-    <thumbs>
-        <thumb>template_new_project.png</thumb>
-    </thumbs>
 
     <parameter
         id="packageName"
         name="Package name"
         type="string"
         constraints="app_package|nonempty"
-        default="com.mycompany.myapp" />
+        default="com.marcosholgado.myapp" />
 
     <parameter
         id="appTitle"
-        name="Module title"
+        name="App title"
         type="string"
         constraints="nonempty"
-        default="My Module" />
-
-    <parameter
-        id="copyIcons"
-        name="Include launcher icons"
-        type="boolean"
-        default="true" />
+        default="My App" />
 
     <parameter
         id="makeIgnore"

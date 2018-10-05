@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="NYT Article List"
+    minApi="23"
+    minBuildApi="23"
+    description="Droidcon ArticleList">
+
+    <category value="Droidcon18" />
+	<formfactor value="Mobile" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+   <parameter
+            id="isStartDestination"
+            name="Is start destination?"
+            type="boolean"
+            default="false"
+            help="If true it will be set to be start destination in the graph"/>
+
+    <parameter
+            id="section"
+            name="Section"
+            type="string"
+            constraints="nonempty"
+            default="home"
+            help="This is the section!" />
+
+    <parameter
+        id="articleClickAction"
+        name="On article click"
+        type="enum"
+        default="1"
+        help="When you click on an article" >
+        <option id="1">Show Toast</option>
+        <option id="2">Use article reader</option>
+    </parameter>
+
+    <thumbs>        
+        <thumb>template_vanguard_sap2.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
