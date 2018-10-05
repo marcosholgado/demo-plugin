@@ -9,7 +9,6 @@ import com.android.tools.idea.npw.model.NewProjectModel
 import com.android.tools.idea.templates.TemplateManager
 import com.android.tools.idea.wizard.model.SkippableWizardStep
 import com.intellij.util.IconUtil
-import com.marcosholgado.droidcon18.plugin.utils.DroidconBundle.message
 import com.marcosholgado.droidcon18.plugin.utils.DroidconIcons
 
 import java.awt.Image
