@@ -15,10 +15,14 @@ class JiraSettings(private val project: Project): Configurable, DocumentListener
     private var passwordField: JPasswordField? = null
     private var jiraURLField: JTextField? = null
     private var regExField: JTextField? = null
+    private var jqlField: JTextField? = null
+    private var nameField: JTextField? = null
     private var userLabel: JLabel? = null
     private var passwordLabel: JLabel? = null
     private var jiraURLLabel: JLabel? = null
     private var regExLabel: JTextField? = null
+    private var jqlLabel: JTextField? = null
+    private var nameLabel: JTextField? = null
     private var mainPanel: JPanel? = null
 
     private var modified = false
@@ -33,6 +37,8 @@ class JiraSettings(private val project: Project): Configurable, DocumentListener
         config.username = userField!!.text
         config.password = String(passwordField!!.password)
         config.regex = regExField!!.text
+        config.jql = jqlField!!.text
+        config.name = nameField!!.text
 
         modified = false
     }
@@ -42,6 +48,8 @@ class JiraSettings(private val project: Project): Configurable, DocumentListener
         userField?.document?.addDocumentListener(this)
         passwordField?.document?.addDocumentListener(this)
         regExField?.document?.addDocumentListener(this)
+        jqlField?.document?.addDocumentListener(this)
+        nameField?.document?.addDocumentListener(this)
 
 
         val config = JiraComponent.getInstance(project)
@@ -49,6 +57,8 @@ class JiraSettings(private val project: Project): Configurable, DocumentListener
         passwordField?.text = config.password
         jiraURLField?.text = config.jiraUrl
         regExField?.text = config.regex
+        jqlField?.text = config.jql
+        nameField?.text = config.name
 
         return mainPanel
     }

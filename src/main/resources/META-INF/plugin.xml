@@ -72,8 +72,15 @@
                 class="com.marcosholgado.droidcon18.plugin.actions.jiraMove.JiraMoveAction"
                 text="Move Ticket"
                 description="Move Ticket in Jira">
-            <add-to-group group-id="DroidconMenu" anchor="first"/>
+            <add-to-group group-id="DroidconMenu" anchor="last"/>
             <keyboard-shortcut first-keystroke="control alt k" keymap="$default"/>
+        </action>
+        <action id="JiraNewTicket"
+                class="com.marcosholgado.droidcon18.plugin.actions.jiraNewTicket.JiraNewTicketAction"
+                text="New Ticket"
+                description="New Ticket in Jira">
+            <add-to-group group-id="DroidconMenu" anchor="first"/>
+            <keyboard-shortcut first-keystroke="control alt l" keymap="$default"/>
         </action>
     </actions>
 </idea-plugin>

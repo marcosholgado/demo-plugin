@@ -19,4 +19,13 @@ interface JiraService {
     fun comment(@Header("Authorization") authKey: String,
                      @Path("issueId") issueId: String,
                      @Body commentData: Comment): Completable
+
+    @GET("search?expand=transitions")
+    fun search(@Header("Authorization") authKey: String,
+                       @Query("jql") jql: String): Single<SearchResponse>
+
+    @PUT("issue/{issueId}/assignee")
+    fun assign(@Header("Authorization") authKey: String,
+               @Path("issueId") issueId: String,
+               @Body assigneeData: AssigneeData): Completable
 }
