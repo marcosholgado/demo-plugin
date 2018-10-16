@@ -48,8 +48,8 @@ class JiraNewTicketPanel : JPanel() {
             descriptionList?.let {
                 builder.append("<html>")
                 for(description in it.content) {
+                    builder.append("<p>")
                     for(content in description.content) {
-                        builder.append("<p>")
                         if (content.marks.isNullOrEmpty()) {
                             builder.append(content.text)
                         } else {
@@ -59,8 +59,8 @@ class JiraNewTicketPanel : JPanel() {
                                 builder.append("</${mark.type}>")
                             }
                         }
-                        builder.append("</p>")
                     }
+                    builder.append("</p>")
                 }
                 builder.append("</html>")
                 descriptionText.text = builder.toString()
