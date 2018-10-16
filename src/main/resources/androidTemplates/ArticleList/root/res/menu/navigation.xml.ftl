@@ -6,5 +6,5 @@
         android:id="@+id/${section}ArticleListAction"
     </#if>          
         android:icon="@android:drawable/ic_menu_camera"
-        android:title="${section?upper_case}" />
+        android:title="${underscoreToCamelCase(section)}" />
 </menu>        	

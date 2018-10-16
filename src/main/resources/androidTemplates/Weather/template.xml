@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="Weather "
+    minApi="23"
+    minBuildApi="23"
+    description="Droidcon Weather">
+
+    <category value="Droidcon18" />
+	<formfactor value="Mobile" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+   <parameter
+            id="isStartDestination"
+            name="Is start destination?"
+            type="boolean"
+            default="false"
+            help="If true it will be set to be start destination in the graph"/>
+
+    <parameter
+            id="city"
+            name="City"
+            type="string"
+            constraints="nonempty"
+            default="London"
+            help="This is the city" />
+
+    <thumbs>        
+        <thumb>template_vanguard_sap2.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
