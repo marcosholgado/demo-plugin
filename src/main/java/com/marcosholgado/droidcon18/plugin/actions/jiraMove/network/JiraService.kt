@@ -6,25 +6,25 @@ import retrofit2.http.*
 
 interface JiraService {
 
-    @GET("issue/{issueId}/transitions")
+    @GET("3/issue/{issueId}/transitions")
     fun getTransitions(@Header("Authorization") authKey: String,
                        @Path("issueId") issueId: String): Single<TransitionsResponse>
 
-    @POST("issue/{issueId}/transitions")
+    @POST("3/issue/{issueId}/transitions")
     fun doTransition(@Header("Authorization") authKey: String,
                      @Path("issueId") issueId: String,
                      @Body transitionData: TransitionData): Completable
 
-    @POST("issue/{issueId}/comment")
+    @POST("2/issue/{issueId}/comment")
     fun comment(@Header("Authorization") authKey: String,
                      @Path("issueId") issueId: String,
                      @Body commentData: Comment): Completable
 
-    @GET("search?expand=transitions")
+    @GET("3/search?expand=transitions")
     fun search(@Header("Authorization") authKey: String,
                        @Query("jql") jql: String): Single<SearchResponse>
 
-    @PUT("issue/{issueId}/assignee")
+    @PUT("3/issue/{issueId}/assignee")
     fun assign(@Header("Authorization") authKey: String,
                @Path("issueId") issueId: String,
                @Body assigneeData: AssigneeData): Completable

@@ -49,6 +49,7 @@ class JiraNewTicketPanel : JPanel() {
                 builder.append("<html>")
                 for(description in it.content) {
                     for(content in description.content) {
+                        builder.append("<p>")
                         if (content.marks.isNullOrEmpty()) {
                             builder.append(content.text)
                         } else {
@@ -58,7 +59,7 @@ class JiraNewTicketPanel : JPanel() {
                                 builder.append("</${mark.type}>")
                             }
                         }
-                        builder.append("</br>")
+                        builder.append("</p>")
                     }
                 }
                 builder.append("</html>")

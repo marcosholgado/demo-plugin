@@ -1,11 +1,10 @@
 <idea-plugin>
     <id>droidcon.droidcon</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <name>Droidcon London 18</name>
+    <vendor email="marcosholgado@gmail.com" url="http://marcosholgado.com">Marcos Holgado</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    This is a demo plugin built for Droidcon London 18.<br>
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -54,33 +53,29 @@
         <group id="Droidcon.TopMenu"
                text="_Droidcon"
                description="Droidcon Toolbar Menu">
-
             <add-to-group group-id="MainMenu" anchor="last"/>
-
             <action id="CopyTemplates"
                     class="com.marcosholgado.droidcon18.plugin.actions.copyTemplates.CopyTemplatesAction"
                     text="_Copy Templates"
                     description="Copy Android Templates"/>
         </group>
-        <group id="DroidconMenu"
-               text="_Droidcon"
-               description="Droidcon">
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
-            <separator/>
+
+        <group id="DroidconMenu" text="_Droidcon" description="Droidcon" popup="true">
+            <group id="DroidconInsideMenu" text="_Droidcon" description="Droidcon">
+                <action id="JiraMoveTicket"
+                        class="com.marcosholgado.droidcon18.plugin.actions.jiraMove.JiraMoveAction"
+                        text="Move Ticket"
+                        description="Move Ticket in Jira">
+                    <keyboard-shortcut first-keystroke="control alt k" keymap="$default"/>
+                </action>
+                <action id="JiraNewTicket"
+                        class="com.marcosholgado.droidcon18.plugin.actions.jiraNewTicket.JiraNewTicketAction"
+                        text="New Ticket"
+                        description="New Ticket in Jira">
+                    <keyboard-shortcut first-keystroke="control alt p" keymap="$default"/>
+                </action>
+            </group>
+            <add-to-group group-id="ProjectViewPopupMenu" relative-to-action="RefactoringMenu" anchor="before"/>
         </group>
-        <action id="JiraMoveTicket"
-                class="com.marcosholgado.droidcon18.plugin.actions.jiraMove.JiraMoveAction"
-                text="Move Ticket"
-                description="Move Ticket in Jira">
-            <add-to-group group-id="DroidconMenu" anchor="last"/>
-            <keyboard-shortcut first-keystroke="control alt k" keymap="$default"/>
-        </action>
-        <action id="JiraNewTicket"
-                class="com.marcosholgado.droidcon18.plugin.actions.jiraNewTicket.JiraNewTicketAction"
-                text="New Ticket"
-                description="New Ticket in Jira">
-            <add-to-group group-id="DroidconMenu" anchor="first"/>
-            <keyboard-shortcut first-keystroke="control alt l" keymap="$default"/>
-        </action>
     </actions>
 </idea-plugin>
