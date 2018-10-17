@@ -5,6 +5,6 @@
 	<#else>	
         android:id="@+id/${section}ArticleListAction"
     </#if>          
-        android:icon="@android:drawable/ic_menu_camera"
+        android:icon="@drawable/${section}"
         android:title="${underscoreToCamelCase(section)}" />
 </menu>        	
