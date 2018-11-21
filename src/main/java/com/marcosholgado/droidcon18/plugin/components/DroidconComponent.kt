@@ -18,8 +18,8 @@ import javax.swing.event.HyperlinkEvent
 ])
 class DroidconComponent: ApplicationComponent, Serializable, PersistentStateComponent<DroidconComponent> {
 
-    private var templatesRevision = 1
-    private var templatesLocalRevision = 0 // Do not change
+    var templatesRevision = 1
+    var templatesLocalRevision = 0 // Do not change
 
     override fun getState(): DroidconComponent? = this
 
