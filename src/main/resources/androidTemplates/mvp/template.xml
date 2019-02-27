@@ -7,7 +7,7 @@
     minBuildApi="23"
     description="MVP pattern for fragments in modules">
 
-    <category value="Droidcon18" />
+    <category value="Demo" />
 	<formfactor value="Mobile" />
 
     <parameter

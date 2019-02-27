@@ -1,10 +1,10 @@
 <idea-plugin>
-    <id>droidcon.droidcon</id>
-    <name>Droidcon London 18</name>
+    <id>demo.demo</id>
+    <name>Demo plugin</name>
     <vendor email="marcosholgado@gmail.com" url="http://marcosholgado.com">Marcos Holgado</vendor>
 
     <description><![CDATA[
-    This is a demo plugin built for Droidcon London 18.<br>
+    This is a demo plugin.<br>
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -18,25 +18,25 @@
 
     <application-components>
         <component>
-            <implementation-class>com.marcosholgado.droidcon18.plugin.components.DroidconComponent</implementation-class>
+            <implementation-class>com.marcosholgado.demo.plugin.components.DemoComponent</implementation-class>
         </component>
     </application-components>
 
     <extensions defaultExtensionNs="com.android">
-        <!-- Add Droidcon module to the New Module wizard -->
-        <moduleDescriptionProvider implementation="com.marcosholgado.droidcon18.plugin.actions.newModule.DroidconModuleProvider"/>
+        <!-- Add Demo module to the New Module wizard -->
+        <moduleDescriptionProvider implementation="com.marcosholgado.demo.plugin.actions.newModule.DemoModuleProvider"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
         <!--Add liveTemplates-->
-        <defaultLiveTemplatesProvider implementation="com.marcosholgado.droidcon18.plugin.liveTemplates.DroidconLiveTemplateProvider"/>
+        <defaultLiveTemplatesProvider implementation="com.marcosholgado.demo.plugin.liveTemplates.DemoLiveTemplateProvider"/>
     </extensions>
 
     <project-components>
         <!-- Add your project components here -->
         <component>
             <implementation-class>
-                com.marcosholgado.droidcon18.plugin.components.JiraComponent
+                com.marcosholgado.demo.plugin.components.JiraComponent
             </implementation-class>
             <loadForDefaultProject/>
         </component>
@@ -45,31 +45,31 @@
     <extensions defaultExtensionNs="com.intellij">
         <defaultProjectTypeProvider type="Android"/>
         <projectConfigurable
-                instance="com.marcosholgado.droidcon18.plugin.configuration.JiraSettings">
+                instance="com.marcosholgado.demo.plugin.configuration.JiraSettings">
         </projectConfigurable>
     </extensions>
 
     <actions>
-        <group id="Droidcon.TopMenu"
-               text="_Droidcon"
-               description="Droidcon Toolbar Menu">
+        <group id="Demo.TopMenu"
+               text="_Demo"
+               description="Demo Toolbar Menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
             <action id="CopyTemplates"
-                    class="com.marcosholgado.droidcon18.plugin.actions.copyTemplates.CopyTemplatesAction"
+                    class="com.marcosholgado.demo.plugin.actions.copyTemplates.CopyTemplatesAction"
                     text="_Copy Templates"
                     description="Copy Android Templates"/>
         </group>
 
-        <group id="DroidconMenu" text="_Droidcon" description="Droidcon" popup="true">
-            <group id="DroidconInsideMenu" text="_Droidcon" description="Droidcon">
+        <group id="DemoMenu" text="_Demo" description="Demo" popup="true">
+            <group id="DemoInsideMenu" text="_Demo" description="Demo">
                 <action id="JiraMoveTicket"
-                        class="com.marcosholgado.droidcon18.plugin.actions.jiraMove.JiraMoveAction"
+                        class="com.marcosholgado.demo.plugin.actions.jiraMove.JiraMoveAction"
                         text="Move Ticket"
                         description="Move Ticket in Jira">
                     <keyboard-shortcut first-keystroke="control alt k" keymap="$default"/>
                 </action>
                 <action id="JiraNewTicket"
-                        class="com.marcosholgado.droidcon18.plugin.actions.jiraNewTicket.JiraNewTicketAction"
+                        class="com.marcosholgado.demo.plugin.actions.jiraNewTicket.JiraNewTicketAction"
                         text="New Ticket"
                         description="New Ticket in Jira">
                     <keyboard-shortcut first-keystroke="control alt p" keymap="$default"/>

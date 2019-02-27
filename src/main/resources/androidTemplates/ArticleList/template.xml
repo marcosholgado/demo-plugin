@@ -5,9 +5,9 @@
     name="NYT Article List"
     minApi="23"
     minBuildApi="23"
-    description="Droidcon ArticleList">
+    description="Demo ArticleList">
 
-    <category value="Droidcon18" />
+    <category value="Demo" />
 	<formfactor value="Mobile" />
 
     <parameter

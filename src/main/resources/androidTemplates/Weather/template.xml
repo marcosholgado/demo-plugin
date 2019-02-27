@@ -5,9 +5,9 @@
     name="Weather "
     minApi="23"
     minBuildApi="23"
-    description="Droidcon Weather">
+    description="Demo Weather">
 
-    <category value="Droidcon18" />
+    <category value="Demo" />
 	<formfactor value="Mobile" />
 
     <parameter
