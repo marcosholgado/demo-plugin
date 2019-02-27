@@ -27,7 +27,6 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-//    compile "org.jetbrains.kotlin:kotlin-runtime:${kotlin_version}"
 
     compile 'com.squareup.retrofit2:retrofit:2.5.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'

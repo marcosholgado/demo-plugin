@@ -7,7 +7,7 @@
     minBuildApi="23"
     description="MVP pattern for fragments in modules">
 
-    <category value="Demo" />
+    <category value="DemoTemplate" />
 	<formfactor value="Mobile" />
 
     <parameter
